@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ categorie.libelle }}{% endblock %}
+
+{% block body %}
+    <h1>{{ categorie.libelle }}</h1>
+    <div class="produits">
+        {% for produit in produits %}
+            <div class="produit">
+                <img src="{{ asset(produit.visuel) }}" alt="{{ produit.libelle }}">
+                <h2>{{ produit.libelle }}</h2>
+                <p>{{ produit.texte }}</p>
+                <p class="prix">{{ produit.prix }} €</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

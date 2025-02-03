@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rayons de la boutique{% endblock %}
+
+{% block body %}
+    <h1>Rayons de la boutique</h1>
+    <div class="categories">
+        {% for categorie in categories %}
+            <div class="categorie">
+                <a href="{{ path('app_boutique_rayon', {'idCategorie': categorie.id}) }}">
+                    <img src="{{ asset(categorie.visuel) }}" alt="{{ categorie.libelle }}">
+                    <h2>{{ categorie.libelle }}</h2>
+                    <p>{{ categorie.texte }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
