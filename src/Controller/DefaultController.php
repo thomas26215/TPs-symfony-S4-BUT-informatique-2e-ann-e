@@ -10,16 +10,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route(
-        path: '/',
+        path: '/{page}',
         name: 'app_default_index',
+        defaults: ['page' => 'index'],
     )]
-    public function index(): Response
+    public function index($page): Response
     {
-        return $this->render('default/index.html.twig');
+        if ($page == 'index') {
+            return $this->render('default/index.html.twig');
+        } else {
+            return $this->contact();
+        }
     }
 
-    // TODO : route et contrôleur de la page de contact
-    // public function contact(): Response
-    // {
-    // }
+    #[Route(
+        path: '/contact',
+        name: 'app_default_contact',
+    )]
+    public function contact(): Response
+    {
+        return $this->render('default/contact.html.twig');
+    }
 }
+
