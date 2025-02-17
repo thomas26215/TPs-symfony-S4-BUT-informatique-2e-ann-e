@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Rayons de la boutique{% endblock %}
+{% block title %}{% trans %}Rayons de la boutique{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Rayons de la boutique</h1>
+    <h1>{% trans %}Rayons de la boutique{% endtrans %}</h1>
     <div class="categories">
         {% for categorie in categories %}
             <div class="categorie">

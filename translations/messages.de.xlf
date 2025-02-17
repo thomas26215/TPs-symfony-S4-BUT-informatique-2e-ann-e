@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="de" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="bkSD4cC" resname="€">
+        <source>€</source>
+        <target>€</target>
+      </trans-unit>
+      <trans-unit id="O.du78B" resname="Rayons de la boutique">
+        <source>Rayons de la boutique</source>
+        <target>Ladenabteilungen</target>
+      </trans-unit>
+      <trans-unit id="3PMa7CE" resname="Accueil">
+        <source>Accueil</source>
+        <target>Startseite</target>
+      </trans-unit>
+      <trans-unit id="0TpiTTx" resname="Boutique R4.01">
+        <source>Boutique R4.01</source>
+        <target>Laden R4.01</target>
+      </trans-unit>
+      <trans-unit id="VbwV2_A" resname="Logo Boutique">
+        <source>Logo Boutique</source>
+        <target>Ladenlogo</target>
+      </trans-unit>
+      <trans-unit id="0KKG2dr" resname="Ici rien à vendre, c'est juste pour apprendre...">
+        <source>Ici rien à vendre, c'est juste pour apprendre...</source>
+        <target>Hier gibt es nichts zu verkaufen, es ist nur zum Lernen...</target>
+      </trans-unit>
+      <trans-unit id="BYROh8T" resname="Démo SF">
+        <source>Démo SF</source>
+        <target>SF Demo</target>
+      </trans-unit>
+      <trans-unit id="fJsFpQ4" resname="TODO">
+        <source>TODO</source>
+        <target>ZU TUN</target>
+      </trans-unit>
+      <trans-unit id="w07IjLt" resname="TODO : définir contenu block title">
+        <source>TODO : définir contenu block title</source>
+        <target>ZU TUN: Inhalt des Block-Titels definieren</target>
+      </trans-unit>
+      <trans-unit id="CObuWkP" resname="TODO : définir contenu block body">
+        <source>TODO : définir contenu block body</source>
+        <target>ZU TUN: Inhalt des Block-Bodys definieren</target>
+      </trans-unit>
+      <trans-unit id="navbar_home" resname="Accueil Boutique">
+        <source>Accueil Boutique</source>
+        <target>Nach Hause einkaufen</target>
+      </trans-unit>
+      <trans-unit id="navbar_toggle" resname="Toggle navigation">
+        <source>Toggle navigation</source>
+        <target>Navigation umschalten</target>
+      </trans-unit>
+      <trans-unit id="navbar_shop" resname="Boutique">
+        <source>Boutique</source>
+        <target>Geschäft</target>
+      </trans-unit>
+      <trans-unit id="navbar_contact" resname="Contact">
+        <source>Contact</source>
+        <target>Kontakt</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+

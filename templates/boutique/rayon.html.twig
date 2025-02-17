@@ -10,7 +10,7 @@
                 <img src="{{ asset(produit.visuel) }}" alt="{{ produit.libelle }}">
                 <h2>{{ produit.libelle }}</h2>
                 <p>{{ produit.texte }}</p>
-                <p class="prix">{{ produit.prix }} €</p>
+                <p class="prix">{{ produit.prix }} {% trans %}€{% endtrans %}</p>
             </div>
         {% endfor %}
     </div>
