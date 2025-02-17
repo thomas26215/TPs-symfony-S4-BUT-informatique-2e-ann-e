@@ -32,5 +32,13 @@ class BoutiqueController extends AbstractController
             'produits' => $produits,
         ]);
     }
+
+    public function topVentes(BoutiqueService $boutique): Response
+    {
+        $produits = $boutique->getTopVentes();
+        return $this->render('boutique/topVentes.html.twig', [
+            'produits' => $produits,
+        ]);
+    }
 }
 

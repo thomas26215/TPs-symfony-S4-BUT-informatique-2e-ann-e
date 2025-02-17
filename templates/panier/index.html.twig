@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Panier{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="main-div">
+        <h1>{% trans %}Votre Panier{% endtrans %}</h1>
+        
+        {% if panier is empty %}
+            <p>{% trans %}Votre panier est vide.{% endtrans %}</p>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans %}Produit{% endtrans %}</th>
+                            <th>{% trans %}Prix unitaire{% endtrans %}</th>
+                            <th>{% trans %}Quantité{% endtrans %}</th>
+                            <th>{% trans %}Total{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in panier %}
+                            <tr>
+                                <td>
+                                    <img src="{{ asset(item.produit.visuel) }}" alt="{{ item.produit.libelle }}" class="cart-img-produit">
+                                    {{ item.produit.libelle }}
+                                </td>
+                                <td>{{ item.produit.prix }} {% trans %}€{% endtrans %}</td>
+                                <td>
+                                    <a href="{{ path('app_panier_enlever', {'idProduit': item.produit.id, 'quantite': 1}) }}" class="btn btn-sm btn-outline-secondary">-</a>
+                                    {{ item.quantite }}
+                                    <a href="{{ path('app_panier_ajouter', {'idProduit': item.produit.id, 'quantite': 1}) }}" class="btn btn-sm btn-outline-secondary">+</a>
+                                </td>
+                                <td>{{ item.produit.prix * item.quantite }} {% trans %}€{% endtrans %}</td>
+                                <td>
+                                    <a href="{{ path('app_panier_supprimer', {'idProduit': item.produit.id}) }}" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i> {% trans %}Supprimer{% endtrans %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right"><strong>{% trans %}Total{% endtrans %}</strong></td>
+                            <td><strong>{{ total }} {% trans %}€{% endtrans %}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <div class="d-flex justify-content-between mt-3">
+                <a href="{{ path('app_boutique') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> {% trans %}Continuer mes achats{% endtrans %}
+                </a>
+                <a href="{{ path('app_panier_vider') }}" class="btn btn-warning">
+                    <i class="fas fa-trash"></i> {% trans %}Vider le panier{% endtrans %}
+                </a>
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-check"></i> {% trans %}Passer la commande{% endtrans %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+

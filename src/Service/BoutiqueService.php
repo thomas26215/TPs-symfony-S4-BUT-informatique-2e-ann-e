@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 //  qui est composée de catégories et de produits stockés "en dur"
 class BoutiqueService
 {
-
     // renvoie toutes les catégories
     public function findAllCategories(): array
     {
@@ -39,7 +38,7 @@ class BoutiqueService
         return (sizeof($res) === 1) ? $res[array_key_first($res)] : null;
     }
 
-    // renvoie untableau de produits dont idCategorie == $idCategorie
+    // renvoie un tableau de produits dont idCategorie == $idCategorie
     public function findProduitsByCategorie(int $idCategorie): array
     {
         return array_filter(
@@ -60,6 +59,16 @@ class BoutiqueService
                     mb_strpos(mb_strtolower($produit->libelle) . " " . $produit->texte, mb_strtolower($search)) !== false);
             }
         );
+    }
+
+    // renvoie les top ventes limitées à $limit produits
+    public function getTopVentes(int $limit = 5): array
+    {
+        $produits = $this->produits;
+        usort($produits, function($a, $b) {
+            return $b->nombreVentes - $a->nombreVentes;
+        });
+        return array_slice($produits, 0, $limit);
     }
 
     // constructeur du service : injection des dépendances et tris
@@ -122,6 +131,7 @@ class BoutiqueService
         }
     ]
 JSON;
+
     const LES_PRODUITS = <<<JSON
     [
         {
@@ -130,7 +140,8 @@ JSON;
             "libelle" : "Pomme",
             "texte" : "Elle est bonne pour la tienne",
             "visuel" : "images/produits/pommes.jpg",
-            "prix" : 3.42
+            "prix" : 3.42,
+            "nombreVentes" : 120
         },
         {
             "id" : 2,
@@ -138,7 +149,8 @@ JSON;
             "libelle" : "Poire",
             "texte" : "Ici tu n'en es pas une",
             "visuel" : "images/produits/poires.jpg",
-            "prix" : 2.11
+            "prix" : 2.11,
+            "nombreVentes" : 90
         },
         {
             "id" : 3,
@@ -146,7 +158,8 @@ JSON;
             "libelle" : "Pêche",
             "texte" : "Elle va te la donner",
             "visuel" : "images/produits/peche.jpg",
-            "prix" : 2.84
+            "prix" : 2.84,
+            "nombreVentes" : 110
         },
         {
             "id" : 4,
@@ -154,7 +167,8 @@ JSON;
             "libelle" : "Carotte",
             "texte" : "C'est bon pour ta vue",
             "visuel" : "images/produits/carottes.jpg",
-            "prix" : 2.90
+            "prix" : 2.90,
+            "nombreVentes" : 85
         },
         {
             "id" : 5,
@@ -162,7 +176,8 @@ JSON;
             "libelle" : "Tomate",
             "texte" : "Fruit ou Légume ? Légume",
             "visuel" : "images/produits/tomates.jpg",
-            "prix" : 1.70
+            "prix" : 1.70,
+            "nombreVentes" : 95
         },
         {
             "id" : 6,
@@ -170,7 +185,8 @@ JSON;
             "libelle" : "Chou Romanesco",
             "texte" : "Mange des fractales",
             "visuel" : "images/produits/romanesco.jpg",
-            "prix" : 1.81
+            "prix" : 1.81,
+            "nombreVentes" : 75
         },
         {
             "id" : 7,
@@ -178,7 +194,8 @@ JSON;
             "libelle" : "Nutella",
             "texte" : "C'est bon, sauf pour ta santé",
             "visuel" : "images/produits/nutella.jpg",
-            "prix" : 4.50
+            "prix" : 4.50,
+            "nombreVentes" : 150
         },
         {
             "id" : 8,
@@ -186,7 +203,8 @@ JSON;
             "libelle" : "Pizza",
             "texte" : "Y'a pas pire que za",
             "visuel" : "images/produits/pizza.jpg",
-            "prix" : 8.25
+            "prix" : 8.25,
+            "nombreVentes" : 200
         },
         {
             "id" : 9,
@@ -194,7 +212,8 @@ JSON;
             "libelle" : "Oreo",
             "texte" : "Seulement si tu es un smartphone",
             "visuel" : "images/produits/oreo.jpg",
-            "prix" : 2.50
+            "prix" : 2.50,
+            "nombreVentes" : 130
         },
         {
             "id" : 10,
@@ -202,7 +221,8 @@ JSON;
             "libelle" : "Gel Hydroalcoolique",
             "texte" : "Usage interne ou externe",
             "visuel" : "images/produits/gel.jpg",
-            "prix" : 100.00
+            "prix" : 100.00,
+            "nombreVentes" : 180
         }, 
         {
             "id" : 11,
@@ -210,7 +230,8 @@ JSON;
             "libelle" : "Masque FFP 200",
             "texte" : "Passe incognito face aux virus",
             "visuel" : "images/produits/masque.jpg",
-            "prix" : 200.0
+            "prix" : 200.0,
+            "nombreVentes" : 160
         }, 
         {
             "id" : 12,
@@ -218,8 +239,10 @@ JSON;
             "libelle" : "Gants de Protection",
             "texte" : "Reste un touche à tout, avec feeling",
             "visuel" : "images/produits/gants.jpg",
-            "prix" : 50.0
+            "prix" : 50.0,
+            "nombreVentes" : 140
         }
     ]
 JSON;
 }
+

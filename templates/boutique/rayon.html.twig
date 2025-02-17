@@ -3,16 +3,24 @@
 {% block title %}{{ categorie.libelle }}{% endblock %}
 
 {% block body %}
-    <h1>{{ categorie.libelle }}</h1>
-    <div class="produits">
-        {% for produit in produits %}
-            <div class="produit">
-                <img src="{{ asset(produit.visuel) }}" alt="{{ produit.libelle }}">
-                <h2>{{ produit.libelle }}</h2>
-                <p>{{ produit.texte }}</p>
-                <p class="prix">{{ produit.prix }} {% trans %}€{% endtrans %}</p>
-            </div>
-        {% endfor %}
+    <div class="main-div">
+        <h1>{{ categorie.libelle }}</h1>
+        <div class="produits row">
+            {% for produit in produits %}
+                <div class="col-md-4 mb-4">
+                    <a href="{{ path('app_panier_ajouter', {'idProduit': produit.id, 'quantite': 1}) }}" class="card-link">
+                        <div class="card">
+                            <img src="{{ asset(produit.visuel) }}" alt="{{ produit.libelle }}" class="card-img-produit">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ produit.libelle }}</h2>
+                                <p class="card-text">{{ produit.texte }}</p>
+                                <p class="prix">{{ produit.prix }} {% trans %}€{% endtrans %}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 

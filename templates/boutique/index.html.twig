@@ -3,17 +3,21 @@
 {% block title %}{% trans %}Rayons de la boutique{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans %}Rayons de la boutique{% endtrans %}</h1>
-    <div class="categories">
-        {% for categorie in categories %}
-            <div class="categorie">
-                <a href="{{ path('app_boutique_rayon', {'idCategorie': categorie.id}) }}">
-                    <img src="{{ asset(categorie.visuel) }}" alt="{{ categorie.libelle }}">
-                    <h2>{{ categorie.libelle }}</h2>
-                    <p>{{ categorie.texte }}</p>
-                </a>
-            </div>
-        {% endfor %}
+    <div class="main-div">
+        <h1>{% trans %}Rayons de la boutique{% endtrans %}</h1>
+        <div class="categories row">
+            {% for categorie in categories %}
+                <div class="col-md-4 mb-4">
+                    <div class="card clickable">
+                        <a href="{{ path('app_boutique_rayon', {'idCategorie': categorie.id}) }}">
+                            <img src="{{ asset(categorie.visuel) }}" alt="{{ categorie.libelle }}" class="card-img">
+                            <h2>{{ categorie.libelle }}</h2>
+                            <p>{{ categorie.texte }}</p>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 

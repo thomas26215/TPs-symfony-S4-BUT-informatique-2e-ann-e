@@ -1,0 +1,12 @@
+<div class="top-ventes-sidebar">
+    <h3>{% trans %}Top Ventes{% endtrans %}</h3>
+    <div class="list-group">
+        {% for produit in produits %}
+            <a href="{{ path('app_panier_ajouter', {'idProduit': produit.id, 'quantite' : 1}) }}" class="list-group-item list-group-item-action">
+                <img src="{{ asset(produit.visuel) }}" alt="{{ produit.libelle }}" class="img-fluid mb-2" style="max-height: 50px;">
+                <p class="mb-0">{{ produit.libelle }} - {{ produit.nombreVentes }} {% trans %}ventes{% endtrans %}</p>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+

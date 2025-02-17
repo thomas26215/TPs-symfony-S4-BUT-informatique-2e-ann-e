@@ -16,13 +16,19 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_panier') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% trans %}Panier{% endtrans %}
+                    <span class="badge badge-light">{{ render(controller('App\\Controller\\PanierController::nombreProduits')) }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_default_contact') }}">
                     <i class="fas fa-comments"></i>
                     {% trans %}Contact{% endtrans %}
                 </a>
             </li>
         </ul>
-
         <ul class="navbar-nav my-0">
             <li class="nav-item dropdown">
                 <span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

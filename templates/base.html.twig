@@ -26,9 +26,8 @@
 		<!-- fin de la navbar -->
 		<main role="main" class="container-fluid">
 			<div class="row">
-				<div class="col-md-10">
-					<div
-						class="main-div">
+				<div class="col-md-9">
+					<div class="main-div">
 						<!-- début du block body -->
 						{%  block body %}
 							<h1>
@@ -37,6 +36,10 @@
 						{%  endblock %}
 						<!-- fin du block body -->
 					</div>
+				</div>
+				<div class="col-md-3">
+					<!-- Sidebar des top ventes -->
+					{{ render(controller('App\\Controller\\BoutiqueController::topVentes')) }}
 				</div>
 			</div>
 		</main>
