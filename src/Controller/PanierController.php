@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\PanierService;
 
+
 final class PanierController extends AbstractController
 {
     #[Route('/{_locale}/panier', name: 'app_panier')]

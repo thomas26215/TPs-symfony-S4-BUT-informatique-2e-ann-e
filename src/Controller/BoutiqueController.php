@@ -6,29 +6,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\CategorieRepository;
-use App\Repository\ProduitRepository;
 use App\Entity\Categorie;
+use App\Entity\Produit;
 
 class BoutiqueController extends AbstractController
 {
     #[Route('/boutique/{_locale}', name: 'app_boutique', requirements: ['_locale' => '%app.supported_locales%'], defaults: ['_locale' => 'fr'])]
-    public function index(CategorieRepository $categorieRepository): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        $categories = $categorieRepository->findAll();
+        $categories = $entityManager->getRepository(Categorie::class)->findAll();
         return $this->render('boutique/index.html.twig', [
             'categories' => $categories,
         ]);
     }
 
     #[Route('/rayon/{idCategorie}/{_locale}', name: 'app_boutique_rayon', requirements: ['_locale' => '%app.supported_locales%'], defaults: ['_locale' => 'fr'])]
-    public function rayon(int $idCategorie, CategorieRepository $categorieRepository, ProduitRepository $produitRepository): Response
+    public function rayon(int $idCategorie, EntityManagerInterface $entityManager): Response
     {
-        $categorie = $categorieRepository->find($idCategorie);
+        $categorie = $entityManager->getRepository(Categorie::class)->find($idCategorie);
         if (!$categorie) {
             throw $this->createNotFoundException('La catégorie demandée n\'existe pas');
         }
-        $produits = $produitRepository->findBy(['categorie' => $categorie]);
+        $produits = $entityManager->getRepository(Produit::class)->findBy(['categorie' => $categorie]);
 
         return $this->render('boutique/rayon.html.twig', [
             'categorie' => $categorie,
@@ -36,14 +35,11 @@ class BoutiqueController extends AbstractController
         ]);
     }
 
-    public function topVentes(ProduitRepository $produitRepository): Response
+    public function topVentes(EntityManagerInterface $entityManager): Response
     {
-        // Supposons que vous ayez une méthode pour obtenir les meilleures ventes
-        // Si ce n'est pas le cas, vous devrez l'implémenter dans ProduitRepository
-        $produits = $produitRepository->findTopVentes();
+        $produits = $entityManager->getRepository(Produit::class)->findTopVentes(5); // Récupère les 5 meilleures ventes
         return $this->render('boutique/topVentes.html.twig', [
             'produits' => $produits,
         ]);
     }
 }
-
